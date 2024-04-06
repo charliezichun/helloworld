@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .button {
+            width: 200px;
+            height: 100px;
+            font-size: 40px;
+            margin: 2px;
+            cursor: pointer;
+            border-style: outset;
+            border-color: rgba(135, 47, 47, 0.719);
+            border-width: 5px;
+        }
+
+        .textview {
+            width: 590px;
+            margin: 5px;
+            height: 100px;
+            font-size: 45px;
+            padding: 5px;
+            border-style: outset;
+            border-color: rgba(135, 47, 47, 0.719);
+            border-width: 5px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-51%) translateY(-110%);
+        }
+
+        .main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        html {
+            background: linear-gradient(to right, rgb(255, 17, 0), rgb(93, 0, 255));
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="main">
+    <form name="form" action="">
+        <input class="textview" name="textview" value="00:00:00:00">
+    </form>
+    <table>
+        <tr>
+            <td><input class="button" name="start"type="button" value="Start" onclick="start()"></td>
+            <td><input class="button" type="button" value="Stop" onclick="stop()"></td>
+            <td><input class="button" type="button" value="Refresh" onclick="refresh()"></td>
+        </tr>
+    </table>
+</div>
+<script>
+    let timerId;
+    let mseconds = 0;
+    let seconds = 0;
+    let minutes = 0;
+    let hours = 0;
+
+    function start() {
+        if (!timerId) {
+            timerId = setInterval(updateTime, 100);
+        }
+    }
+
+    function stop() {
+        clearInterval(timerId);
+        timerId = null;
+    }
+
+    function updateTime() {
+        mseconds++;
+        if (mseconds === 10) {
+            seconds++;
+            mseconds = 0;
+            if (seconds === 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes === 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+        }
+        document.form.textview.value = formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds) + ":" + formatTime(mseconds);
+    }
+    function refresh(){
+        mseconds = 0;
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        document.form.textview.value = formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds) + ":" + formatTime(mseconds);
+    }
+    function formatTime(time) {
+        return time < 10 ? "0" + time : time;
+    }
+</script>
+</body>
+</html>
