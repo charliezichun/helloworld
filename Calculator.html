@@ -67,6 +67,10 @@
             condition=true
             
         }
+        function dv(){
+            document.form.textview.value += '÷';
+            a += '/';
+        }
 	</script>
 	<style >
 	    *{
@@ -123,7 +127,7 @@
                 <td><input class="butto" type="button" value="C" onclick="clean()"></td>
                 <td><input class="butto" type="button" value="<" onclick="back()"></td>
                 
-                <td><input class="butto" type="button" value="/" onclick="insert('/')"></td>
+                <td><input class="butto" type="button" value="÷" onclick="dv()"></td>
                 <td><input class="butto" type="button" value="X" onclick="times()"></td>
                 <td><input class="butto" type="button" value="=" onclick="equal()" id="equal" style="height: 524px" ></td>
                 
