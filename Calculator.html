@@ -14,39 +14,24 @@
 	    function insert(num){
 	        document.form.textview.value += num;
             a += num;
-            if (condition) {
-                insertt(num)
-                a -= num
-            }
+
 	    }
-        function insertt(num){
-            b += num;
-            if (num === ")"){
-                b -= num
-                condition = false
-                b = eval(b)
-                math(b)
-            }
-        function math(){
-            Math.sqrt(b)
-            c = b
-            a += c
-            b = ""
-        }
-        }
+        
+        
 	    function clean(){
-	        document.form.textview.value=null;
-            a="";
+	        document.form.textview.value="";
+            a=' ';
 	    }
 	    function back(){
 	        var exp = document.form.textview.value;
 	        document.form.textview.value = exp.substring(0,exp.length-1);
-            a = exp.substring(0,exp.length-1);
+            a = a.substring(0,exp.length-1);
 	    }
 	    
 	    function equal(){
             try{
-                document.form.textview.value= eval(a);
+                document.form.textview.value = eval(a);
+                a= eval(a);
             }catch(error){
                 document.form.textview.value="Error";
             }
@@ -62,11 +47,7 @@
             document.form.textview.value += '×';
             a += '*';
         }
-        function sqr(){
-            document.form.textview.value += '√(';
-            condition=true
-            
-        }
+        
         function dv(){
             document.form.textview.value += '÷';
             a += '/';
